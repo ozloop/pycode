@@ -19,5 +19,10 @@ class itemSpider(scrapy.Spider):
                 f.write(text)  # 写入名言内容
                 f.write('\n')  # 换行
                 f.write('标签：'+tags)  # 写入标签
-                self.log('tag is %s' % tags)
+                self.log('tag is>>>> %s' % tags)
                 f.close()  # 关闭文件操作
+        
+        next_page = response.css('li.next a::attr(href)').extract_first()  
+        if next_page is not None: 
+            next_page = response.urljoin(next_page)
+            yield scrapy.Request(next_page, callback=self.parse)
