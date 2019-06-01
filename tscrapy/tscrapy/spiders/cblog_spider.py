@@ -18,6 +18,7 @@ class cblog(scrapy.Spider): #需要继承scrapy.Spider类
     ]
 
     def parse(self, response):
+        print('>>>>>>>>>>')
 
         '''
         start_requests已经爬取到页面，那如何提取我们想要的内容呢？那就可以在这个方法里面定义。
